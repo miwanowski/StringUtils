@@ -39,6 +39,9 @@ class StringUtilsTests extends FunSuite with BeforeAndAfter {
     assert(StringUtils.replaceAll("foo bar baz", "[^a-zA-Z0-9]", "*") == "foo*bar*baz")
     assert(StringUtils.replaceAll("<script language=\"java\"",  "[^a-zA-Z0-9]", "*") == "*script*language**java*")
     assert(StringUtils.replaceAll("  ", "[^a-zA-Z0-9]", "*") == "**")
+    assert(StringUtils.replaceAll("<script ", "[<>]", "*") == "*script ")
+    assert(StringUtils.replaceAll("/>", "[<>]", "*") == "/*")
+    assert(StringUtils.replaceAll("<html>", "[<>]", "*") == "*html*")
   }
 
   test("text that string has only letters and numbers") {
